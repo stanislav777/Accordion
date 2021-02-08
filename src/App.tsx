@@ -1,32 +1,44 @@
-import React from 'react';
+import React, {useState} from "react";
 
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
-import {Rating, Star} from "./components/Rating/Rating";
+import {Rating, RatingValueType} from "./components/Rating/Rating";
+import UncontroledAccordion from "./components/UncontroledAccordion.tsx/UncontroledAccordion";
+import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
 
 function App() {
-    console.log("App")
+
+    // let[ratingValue, setRatingValue] = useState<RatingValueType>(0)
+    let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
+
     return (
         <div>
-            <PageTitle title={"My friends"}/>
-            <PageTitle title={"Next page"}/>
-            <Rating value={3}/>
+            {/*<Rating value={ratingValue}*/}
+            {/*         N = {setRatingValue} />*/}
 
-            <Accordion titleValue={"Menu"} collapsed={true}/>
-            <Accordion titleValue={"Users"} collapsed={false}/>
-            <Rating value={2}/>
-            <Rating value={20}/>
 
+            <Accordion
+                titleValue={"Menu"}
+                collapsed={accordionCollapsed}
+                onChange = {() => {setAccordionCollapsed(!accordionCollapsed)}}/>
+
+            <UncontroledAccordion titleValue={"Users"} />
+            {/*<UncontrolledRating />*/}
+
+
+            {/*<Rating value={3}/>*/}
+            {/*<Rating value={1}/>*/}
+            {/*<Rating value={2}/>*/}
+            {/*<Rating value={3}/>*/}
+            {/*<Rating value={4}/>*/}
+            {/*<Rating value={5}/>*/}
         </div>
-
     );
 }
 
-function PageTitle(props: any) {
-    return <h1> {props.title} </h1>
-
-}
-
-// hello();
+// function PageTitle(props: any) {
+//     return <h1> {props.title} </h1>
+//
+// }
 
 export default App;
